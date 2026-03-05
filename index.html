@@ -550,9 +550,9 @@
   <p class="view-desc">Fluxos da Equipe Médica e Nutrição.</p>
 
   <div class="pool">
-    <div class="pool-header" style="background:var(--medica-soft);color:var(--medica)"><div class="dot8" style="background:var(--medica)"></div>EQUIPE MÉDICA — Prescrição Médica (a cada 15 dias)</div>
+    <div class="pool-header" style="background:var(--medica-soft);color:var(--medica)"><div class="dot8" style="background:var(--medica)"></div>EQUIPE MÉDICA — Prescrição Médica</div>
     <div class="pool-body">
-      <div class="node"><div class="nb se" style="border-color:var(--medica);color:var(--medica)">▶</div><div class="nlabel">A cada 15 dias</div></div><div class="arr">›</div>
+      <div class="node"><div class="nb se" style="border-color:var(--medica);color:var(--medica)">▶</div><div class="nlabel">A cada 30 dias</div></div><div class="arr">›</div>
       <div class="node"><div class="nb" style="border-color:var(--medica)" data-tip="Prescrição" data-desc="Médico acessa o SpinCare e gera a prescrição médica com os medicamentos do paciente.">Gerar prescrição no SpinCare</div></div><div class="arr">›</div>
       <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Separar" data-desc="Logística recebe a dispensação e separa os medicamentos.">Logística separa</div></div><div class="arr">›</div>
       <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Conferir" data-desc="Logística confere os itens com a prescrição.">Confere</div></div><div class="arr">›</div>
@@ -654,13 +654,13 @@
       <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--enfermagem)"></div>Relatórios Físicos → Auditoria — Até o 3º dia útil
       </div>
       <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--medica)"></div>Prescrição Médica + Nutricional — Dia 01 ao 06</div>
-      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--auditoria)"></div>Liberação de Orçamento (Auditoria) — Dia 07 ao 11</div>
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--auditoria)"></div>Liberação de Prescrição (Auditoria) — Dia 07 ao 11</div>
       <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--logistica)"></div>Análise e Envio — Prescrições + Pedidos Enfermagem (Logística) — Dia 12 ao fim do mês</div>
       <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--enfermagem)"></div>Pedidos Mensais Enfermagem (e-mail) — Dia 12 e 13</div>
       <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--auditoria)" style="opacity:0.6"></div>Auditoria — Elaboração Orçamento/Escala — Dia 16 ao 20</div>
       <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--enfermagem)" style="opacity:0.6"></div>Enfermagem — Lançamento Escalas — Dia 21 ao 25</div>
       <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--enfermagem)"></div>Enfermagem — Plano de Cuidado — Dia 26 ao 28</div>
-      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--enfermagem)"></div>Enfermagem — Consumo no sistema + Relatórios — Última semana</div>
+      <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--enfermagem)"></div>Enfermagem — Consumo no sistema — Última semana</div>
     </div>
     <div class="cal-grid-wrap">
       <div class="cal-grid" id="calGrid"></div>
@@ -860,7 +860,7 @@
     {start:16,end:20,cls:'auditoria', label:'Elaboração Orçamento + Escala',          desc:'Dia 16 ao 20 · Auditoria'},
     {start:21,end:25,cls:'enfermagem',label:'Lançamento de Escalas',                  desc:'Dia 21 ao 25 · Enfermagem'},
     {start:26,end:28,cls:'multi',     label:'Plano de Cuidado',                       desc:'Dia 26 ao 28 · Enfermagem'},
-    {start:25,end:31,cls:'cinza',     label:'Consumo no sistema + Relatórios',        desc:'Última semana · Relatórios até 3º dia útil do mês seguinte'},
+    {start:25,end:31,cls:'cinza',     label:'Consumo no sistema',                     desc:'Última semana'},
   ];
 
   function buildCal(){
