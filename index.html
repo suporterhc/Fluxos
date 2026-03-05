@@ -156,119 +156,97 @@
 
 <!-- ═══════ FLUXO GERAL ═══════ -->
 <div class="view active" id="view-geral">
-  <p class="view-desc">Visão macro conectando todos os departamentos. Passe o mouse nos blocos para detalhes.</p>
+  <p class="view-desc">Visão macro de todos os fluxos operacionais do SpinCare, na sequência lógica de execução. Passe o mouse nos blocos para detalhes.</p>
 
-  <!-- ADMISSÃO -->
+  <!-- ETAPA 1 -->
+  <p class="stitle">Etapa 1 — Auditoria gera o orçamento</p>
   <div class="pool">
-    <div class="pool-header" style="background:var(--auditoria-soft);color:var(--auditoria)"><div class="dot8" style="background:var(--auditoria)"></div>ADMISSÃO — Auditoria</div>
-    <div class="pool-body">
-      <div class="node"><div class="nb se" style="border-color:var(--auditoria);color:var(--auditoria)" data-tip="Início" data-desc="Paciente chega após adesão ao SpinCare.">▶</div><div class="nlabel">Paciente chega</div></div>
+    <div class="pool-header" style="background:var(--auditoria-soft);color:var(--auditoria)"><div class="dot8" style="background:var(--auditoria)"></div>AUDITORIA — Criação / Replicação de Orçamento</div>
+    <div class="pool-body" style="flex-wrap:wrap;row-gap:10px;">
+      <div class="node"><div class="nb se" style="border-color:var(--auditoria);color:var(--auditoria)" data-tip="Início" data-desc="Paciente já cadastrado no SpinCare.">▶</div><div class="nlabel">Paciente cadastrado</div></div>
       <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--auditoria)" data-tip="Cadastro" data-desc="Auditoria cadastra o paciente no sistema SpinCare com dados pessoais e clínicos.">Cadastrar paciente</div></div>
-      <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--auditoria)" data-tip="Orçamento" data-desc="Gerar orçamento com atendimentos, profissionais, escalas, insumos, medicamentos e equipamentos.">Gerar orçamento completo</div></div>
-      <div class="arr">›</div>
-      <div class="node"><div class="nb gw" style="border-color:var(--border)" data-tip="Paralelo" data-desc="Orçamento dispara dois fluxos simultâneos."><span class="gi">+</span></div><div class="nlabel">Paralelo</div></div>
+      <div class="node"><div class="nb gw" style="border-color:var(--auditoria)" data-tip="Replicar ou Novo?" data-desc="Replicar orçamento existente com ajustes, ou criar um novo orçamento do zero."><span class="gi">?</span></div><div class="nlabel">Replicar ou novo?</div></div>
       <div class="pb">
-        <div class="plbl">gerado pelo orçamento</div>
-        <div class="fr"><span class="ll" style="color:var(--enfermagem)">ENFERMAGEM</span><div class="arr">›</div><div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Escalas" data-desc="Enfermagem recebe as escalas e insere os profissionais (equipe multi e técnica).">Inserir profissionais nas escalas</div></div></div>
-        <div class="fr"><span class="ll" style="color:var(--logistica)">LOGÍSTICA</span><div class="arr">›</div><div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Dispensação" data-desc="Logística recebe dispensação automática e separa, confere e envia insumos, medicamentos e equipamentos.">Separar, conferir e enviar</div></div></div>
+        <div class="fr" style="gap:5px"><span style="color:var(--muted);font-size:10px;width:64px">Replicar →</span><div class="node"><div class="nb" style="border-color:var(--auditoria)" data-tip="Replicar" data-desc="Selecionar orçamento anterior e replicar com os ajustes necessários.">Selecionar e replicar</div></div></div>
+        <div class="fr" style="gap:5px"><span style="color:var(--muted);font-size:10px;width:64px">Novo →</span><div class="node"><div class="nb" style="border-color:var(--auditoria)" data-tip="Novo Orçamento" data-desc="Criar novo orçamento com atendimentos, profissionais, insumos, medicamentos e equipamentos.">Criar novo orçamento</div></div></div>
       </div>
       <div class="arr">›</div>
-      <div class="node"><div class="nb en" style="border-color:var(--enfermagem);color:var(--enfermagem)" data-tip="Admissão OK" data-desc="Paciente cadastrado, escalas preenchidas e dispensação enviada.">✓</div><div class="nlabel">Admissão OK</div></div>
+      <div class="node"><div class="nb" style="border-color:var(--auditoria)" data-tip="Confirmar" data-desc="Revisar e confirmar os itens do orçamento.">Revisar e confirmar</div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb gw" style="border-color:var(--border)" data-tip="Paralelo" data-desc="O orçamento confirmado dispara dois fluxos simultâneos: escala para a Enfermagem e dispensação para a Logística."><span class="gi">+</span></div><div class="nlabel">Gera em paralelo</div></div>
+      <div class="pb">
+        <div class="fr"><span class="ll" style="color:var(--enfermagem)">ESCALA</span><div class="arr">›</div><div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Escala gerada" data-desc="Escala gerada automaticamente. Enfermagem irá inserir os profissionais.">Escala → Enfermagem</div></div></div>
+        <div class="fr"><span class="ll" style="color:var(--logistica)">DISPENSAÇÃO</span><div class="arr">›</div><div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Dispensação gerada" data-desc="Dispensação inicial gerada automaticamente. Logística irá separar e enviar.">Dispensação → Logística</div></div></div>
+      </div>
     </div>
   </div>
 
-  <p class="stitle">Fluxos Contínuos</p>
-
+  <!-- ETAPA 2 -->
+  <p class="stitle">Etapa 2 — Logística envia a dispensação / Enfermagem preenche a escala</p>
   <div class="pool">
-    <div class="pool-header" style="background:var(--enfermagem-soft);color:var(--enfermagem)"><div class="dot8" style="background:var(--enfermagem)"></div>ENFERMAGEM — Passagem de Plantão (Diário)</div>
+    <div class="pool-header" style="background:var(--logistica-soft);color:var(--logistica)"><div class="dot8" style="background:var(--logistica)"></div>LOGÍSTICA — Dispensação do Orçamento</div>
     <div class="pool-body">
-      <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Organizar" data-desc="Enfermeiro saindo organiza ocorrências, pendências e estado dos pacientes.">Organizar informações do turno</div></div>
+      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Receber" data-desc="Logística recebe a dispensação gerada pelo orçamento da Auditoria.">Receber dispensação</div></div>
       <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Passagem" data-desc="Repassa ao enfermeiro entrante: pacientes, pendências, ocorrências e escalas.">Passar ao enfermeiro entrante</div></div>
+      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Separar" data-desc="Separar todos os itens da dispensação.">Separar</div></div>
       <div class="arr">›</div>
-      <div class="node"><div class="nb en" style="border-color:var(--enfermagem);color:var(--enfermagem)">✓</div><div class="nlabel">Turno assumido</div></div>
-    </div>
-  </div>
-
-  <div class="pool">
-    <div class="pool-header" style="background:var(--enfermagem-soft);color:var(--enfermagem)"><div class="dot8" style="background:var(--enfermagem)"></div>ENFERMAGEM + LOGÍSTICA — Pedido de Insumos Extras</div>
-    <div class="pool-body">
-      <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Solicitar" data-desc="Enfermagem identifica necessidade e solicita insumos extras via e-mail para a Logística.">Solicitar insumos (e-mail)</div></div>
+      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Conferir" data-desc="Conferir os itens com o orçamento.">Conferir</div></div>
       <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Separar" data-desc="Logística recebe o pedido e separa os itens solicitados.">Logística separa itens</div></div>
-      <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Conferir" data-desc="Logística confere os itens separados com o pedido recebido.">Confere pedido</div></div>
-      <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Enviar" data-desc="Logística envia os insumos para o paciente.">Envia ao paciente</div></div>
+      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Enviar" data-desc="Enviar os itens para a casa do paciente.">Enviar ao paciente</div></div>
       <div class="arr">›</div>
       <div class="node"><div class="nb en" style="border-color:var(--logistica);color:var(--logistica)">✓</div></div>
     </div>
   </div>
 
   <div class="pool">
-    <div class="pool-header" style="background:var(--medica-soft);color:var(--medica)"><div class="dot8" style="background:var(--medica)"></div>EQUIPE MÉDICA — Solicitação de Exame</div>
+    <div class="pool-header" style="background:var(--enfermagem-soft);color:var(--enfermagem)"><div class="dot8" style="background:var(--enfermagem)"></div>ENFERMAGEM — Preenchimento da Escala</div>
     <div class="pool-body">
-      <div class="node"><div class="nb" style="border-color:var(--medica)" data-tip="Solicitar" data-desc="Médico solicita exame e encaminha para a Enfermagem.">Médico solicita exame</div></div>
+      <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Receber Escala" data-desc="Enfermagem recebe a escala gerada pelo orçamento.">Receber escala do orçamento</div></div>
       <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Receber" data-desc="Enfermagem recebe a solicitação.">Enfermagem recebe</div></div>
+      <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Inserir Técnica" data-desc="Inserir técnicos de enfermagem nas escalas.">Inserir equipe técnica</div></div>
       <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Família" data-desc="Enfermagem envia a solicitação do exame à família do paciente.">Envia à família</div></div>
+      <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Inserir Multi" data-desc="Inserir fisioterapeuta, fonoaudiólogo, TO, psicólogo e demais profissionais.">Inserir equipe multi</div></div>
       <div class="arr">›</div>
-      <div class="node"><div class="nb en" style="border-color:var(--enfermagem);color:var(--enfermagem)">✓</div><div class="nlabel">Família realiza</div></div>
+      <div class="node"><div class="nb en" style="border-color:var(--enfermagem);color:var(--enfermagem)">✓</div><div class="nlabel">Escala completa</div></div>
     </div>
   </div>
 
+  <!-- ETAPA 3 -->
+  <p class="stitle">Etapa 3 — Enfermagem elabora o Plano de Cuidado</p>
   <div class="pool">
-    <div class="pool-header" style="background:var(--medica-soft);color:var(--medica)"><div class="dot8" style="background:var(--medica)"></div>EQUIPE MÉDICA + LOGÍSTICA — Prescrição Médica (15 em 15 dias)</div>
+    <div class="pool-header" style="background:var(--enfermagem-soft);color:var(--enfermagem)"><div class="dot8" style="background:var(--enfermagem)"></div>ENFERMAGEM — Plano de Cuidado</div>
     <div class="pool-body">
-      <div class="node"><div class="nb" style="border-color:var(--medica)" data-tip="Prescrição" data-desc="Médico gera a prescrição médica no sistema SpinCare.">Gerar prescrição no sistema</div></div>
+      <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Com escalas prontas" data-desc="Com os profissionais inseridos nas escalas, a Enfermagem elabora o plano de cuidado.">Escalas preenchidas</div></div>
       <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Separar" data-desc="Logística recebe a dispensação gerada e separa os medicamentos.">Logística separa</div></div>
+      <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Plano de Cuidado" data-desc="Elaborar e registrar o plano de cuidado de cada paciente no SpinCare.">Elaborar plano de cuidado</div></div>
       <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Conferir" data-desc="Logística confere os itens separados com a prescrição.">Confere</div></div>
+      <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="PEP" data-desc="Preencher o Prontuário Eletrônico do Paciente quando necessário.">Preencher PEP (quando necessário)</div></div>
       <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Enviar" data-desc="Logística envia os medicamentos ao paciente.">Envia ao paciente</div></div>
-      <div class="arr">›</div>
-      <div class="node"><div class="nb en" style="border-color:var(--medica);color:var(--medica)">✓</div></div>
+      <div class="node"><div class="nb en" style="border-color:var(--enfermagem);color:var(--enfermagem)">✓</div></div>
     </div>
   </div>
 
+  <!-- ETAPA 4 -->
+  <p class="stitle">Etapa 4 — Equipes entram em campo</p>
   <div class="pool">
-    <div class="pool-header" style="background:var(--nutricao-soft);color:var(--nutricao)"><div class="dot8" style="background:var(--nutricao)"></div>NUTRIÇÃO + LOGÍSTICA — Prescrição Nutricional (Mensal)</div>
-    <div class="pool-body">
-      <div class="node"><div class="nb" style="border-color:var(--nutricao)" data-tip="Prescrição" data-desc="Nutricionista gera a prescrição nutricional mensal no sistema SpinCare.">Gerar prescrição no sistema</div></div>
-      <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Separar" data-desc="Logística recebe a dispensação e separa os produtos nutricionais.">Logística separa</div></div>
-      <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Conferir" data-desc="Logística confere os itens com a prescrição.">Confere</div></div>
-      <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Enviar" data-desc="Logística envia os produtos nutricionais ao paciente.">Envia ao paciente</div></div>
-      <div class="arr">›</div>
-      <div class="node"><div class="nb en" style="border-color:var(--nutricao);color:var(--nutricao)">✓</div></div>
-    </div>
-  </div>
-
-  <div class="pool">
-    <div class="pool-header" style="background:var(--tecnica-soft);color:var(--tecnica)"><div class="dot8" style="background:var(--tecnica)"></div>EQUIPE TÉCNICA — Atendimento (App)</div>
-    <div class="pool-body" style="flex-wrap:wrap;row-gap:8px">
-      <div class="node"><div class="nb se" style="border-color:var(--tecnica);color:var(--tecnica)">▶</div></div><div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--tecnica)" data-tip="App" data-desc="Abrir app SpinCare e selecionar atendimento do dia.">Abrir app / selecionar</div></div><div class="arr">›</div>
+    <div class="pool-header" style="background:var(--tecnica-soft);color:var(--tecnica)"><div class="dot8" style="background:var(--tecnica)"></div>EQUIPE TÉCNICA — Atendimento via App SpinCare (a cada atendimento)</div>
+    <div class="pool-body" style="flex-wrap:wrap;row-gap:8px;">
+      <div class="node"><div class="nb se" style="border-color:var(--tecnica);color:var(--tecnica)">▶</div><div class="nlabel">Chega ao paciente</div></div><div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--tecnica)" data-tip="App" data-desc="Abrir app SpinCare e selecionar o atendimento do dia.">Abrir app</div></div><div class="arr">›</div>
       <div class="node"><div class="nb" style="border-color:var(--tecnica)" data-tip="Check-in" data-desc="Registrar início do atendimento.">Check-in</div></div><div class="arr">›</div>
       <div class="node"><div class="nb" style="border-color:var(--tecnica)" data-tip="Plano" data-desc="Executar o plano de cuidado prescrito.">Plano de cuidado</div></div><div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--tecnica)" data-tip="Sinais Vitais" data-desc="Inserir sinais vitais no app.">Sinais vitais</div></div><div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--tecnica)" data-tip="Evolução" data-desc="Fazer evolução e relatório.">Evolução / relatório</div></div><div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--tecnica)" data-tip="Finalizar" data-desc="Salvar e enviar.">Salvar e enviar</div></div><div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--tecnica)" data-tip="Sinais Vitais" data-desc="Registrar sinais vitais — OBRIGATÓRIO em toda evolução.">Sinais vitais ⚠️</div></div><div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--tecnica)" data-tip="Evolução" data-desc="Fazer evolução e relatório do atendimento.">Evolução / relatório</div></div><div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--tecnica)" data-tip="Salvar" data-desc="Salvar e enviar.">Salvar e enviar</div></div><div class="arr">›</div>
       <div class="node"><div class="nb en" style="border-color:var(--tecnica);color:var(--tecnica)">✓</div><div class="nlabel">Check-out</div></div>
     </div>
   </div>
 
   <div class="pool">
-    <div class="pool-header" style="background:var(--multi-soft);color:var(--multi)"><div class="dot8" style="background:var(--multi)"></div>EQUIPE MULTI — Atendimento (App)</div>
-    <div class="pool-body" style="flex-wrap:wrap;row-gap:8px">
-      <div class="node"><div class="nb se" style="border-color:var(--multi);color:var(--multi)">▶</div></div><div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--multi)" data-tip="App" data-desc="Abrir app e selecionar atendimento.">Abrir app / selecionar</div></div><div class="arr">›</div>
+    <div class="pool-header" style="background:var(--multi-soft);color:var(--multi)"><div class="dot8" style="background:var(--multi)"></div>EQUIPE MULTI — Atendimento via App SpinCare (a cada atendimento)</div>
+    <div class="pool-body" style="flex-wrap:wrap;row-gap:8px;">
+      <div class="node"><div class="nb se" style="border-color:var(--multi);color:var(--multi)">▶</div><div class="nlabel">Chega ao paciente</div></div><div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--multi)" data-tip="App" data-desc="Abrir app SpinCare e selecionar o atendimento do dia.">Abrir app</div></div><div class="arr">›</div>
       <div class="node"><div class="nb" style="border-color:var(--multi)" data-tip="Check-in" data-desc="Registrar início.">Check-in</div></div><div class="arr">›</div>
       <div class="node"><div class="nb" style="border-color:var(--multi)" data-tip="Atendimento" data-desc="Realizar atendimento conforme especialidade.">Realizar atendimento</div></div><div class="arr">›</div>
       <div class="node"><div class="nb" style="border-color:var(--multi)" data-tip="Evolução" data-desc="Fazer evolução e relatório.">Evolução / relatório</div></div><div class="arr">›</div>
@@ -277,40 +255,94 @@
     </div>
   </div>
 
+  <!-- ETAPA 5 -->
+  <p class="stitle">Etapa 5 — Prescrições Médica e Nutricional → Auditoria → Logística</p>
   <div class="pool">
-    <div class="pool-header" style="background:var(--logistica-soft);color:var(--logistica)"><div class="dot8" style="background:var(--logistica)"></div>LOGÍSTICA — Compras</div>
-    <div class="pool-body" style="flex-wrap:wrap;row-gap:8px">
-      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Necessidade" data-desc="Pode vir da Logística (estoque baixo) ou solicitação de outra equipe.">Identificar necessidade</div></div><div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Cotação" data-desc="Realizar cotação com fornecedores.">Realizar cotação</div></div><div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Compra" data-desc="Realizar a compra com fornecedor aprovado.">Realizar compra</div></div><div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Entrada NF" data-desc="Produto chega → dar entrada na NF → lançar no sistema.">Entrada NF no sistema</div></div><div class="arr">›</div>
-      <div class="node"><div class="nb en" style="border-color:var(--logistica);color:var(--logistica)">✓</div><div class="nlabel">Estoque atualizado</div></div>
+    <div class="pool-header" style="background:var(--medica-soft);color:var(--medica)"><div class="dot8" style="background:var(--medica)"></div>EQUIPE MÉDICA + NUTRIÇÃO — Prescrições (Médica quinzenal / Nutricional mensal)</div>
+    <div class="pool-body" style="flex-wrap:wrap;row-gap:10px;">
+      <div class="pb" style="border-color:var(--medica)">
+        <div class="plbl" style="color:var(--medica)">em paralelo</div>
+        <div class="fr"><span class="ll" style="color:var(--medica)">MÉDICA</span><div class="arr">›</div><div class="node"><div class="nb" style="border-color:var(--medica)" data-tip="Prescrição Médica" data-desc="Médico gera a prescrição médica no SpinCare. Geração quinzenal.">Gerar prescrição médica</div></div></div>
+        <div class="fr"><span class="ll" style="color:var(--nutricao)">NUTRIÇÃO</span><div class="arr">›</div><div class="node"><div class="nb" style="border-color:var(--nutricao)" data-tip="Prescrição Nutricional" data-desc="Nutricionista gera a prescrição nutricional no SpinCare. Geração mensal.">Gerar prescrição nutricional</div></div></div>
+      </div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--auditoria)" data-tip="Orçamento gerado" data-desc="Cada prescrição gera automaticamente um orçamento para a Auditoria aprovar.">Gera orçamento → Auditoria aprova</div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Dispensação" data-desc="Com o orçamento aprovado, a Logística recebe a dispensação.">Logística recebe dispensação</div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Separar" data-desc="Logística separa os itens.">Separar</div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Conferir" data-desc="Conferir os itens com a prescrição.">Conferir</div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Enviar" data-desc="Enviar ao paciente.">Enviar ao paciente</div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb en" style="border-color:var(--logistica);color:var(--logistica)">✓</div></div>
     </div>
   </div>
 
+  <!-- ETAPA 6 -->
+  <p class="stitle">Etapa 6 — Pedido Mensal de Insumos da Enfermagem → Logística</p>
   <div class="pool">
-    <div class="pool-header" style="background:var(--enfermagem-soft);color:var(--enfermagem)"><div class="dot8" style="background:var(--enfermagem)"></div>ENFERMAGEM + LOGÍSTICA — Inventário na Casa do Paciente</div>
-    <div class="pool-body" style="flex-wrap:wrap;row-gap:8px">
-      <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Inventário" data-desc="A cada visita: contabilizar os insumos na casa do paciente.">Contabilizar insumos na casa</div></div><div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Baixa" data-desc="Dar baixa no sistema dos insumos consumidos.">Dar baixa no sistema</div></div><div class="arr">›</div>
-      <div class="node"><div class="nb gw" style="border-color:var(--border)" data-tip="Sobra no fim do mês?" data-desc="Há insumos com sobra ao final do mês?"><span class="gi">?</span></div><div class="nlabel">Sobra no fim do mês?</div></div>
+    <div class="pool-header" style="background:var(--enfermagem-soft);color:var(--enfermagem)"><div class="dot8" style="background:var(--enfermagem)"></div>ENFERMAGEM + LOGÍSTICA — Pedido Mensal de Insumos</div>
+    <div class="pool-body" style="flex-wrap:wrap;row-gap:8px;">
+      <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Pedido" data-desc="Enfermagem envia o pedido mensal de insumos para a Logística via e-mail (dias 12 e 13).">Enviar pedido via e-mail</div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Receber" data-desc="Logística recebe o pedido de insumos da Enfermagem.">Logística recebe pedido</div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Separar" data-desc="Separar os insumos solicitados.">Separar</div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Dispensação" data-desc="Registrar a dispensação no sistema SpinCare.">Dispensação no sistema</div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Enviar" data-desc="Enviar os insumos para a casa do paciente.">Enviar ao paciente</div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb en" style="border-color:var(--logistica);color:var(--logistica)">✓</div></div>
+    </div>
+  </div>
+
+  <!-- ETAPA 7 -->
+  <p class="stitle">Etapa 7 — Inventário na Casa do Paciente (última visita do mês)</p>
+  <div class="pool">
+    <div class="pool-header" style="background:var(--enfermagem-soft);color:var(--enfermagem)"><div class="dot8" style="background:var(--enfermagem)"></div>ENFERMAGEM — Inventário na Casa do Paciente</div>
+    <div class="pool-body" style="flex-wrap:wrap;row-gap:8px;">
+      <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Contabilizar" data-desc="Na última visita do mês: contabilizar todos os insumos presentes na casa do paciente.">Contabilizar insumos na casa</div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Baixa" data-desc="Dar baixa no SpinCare dos insumos consumidos no mês.">Dar baixa no SpinCare</div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb gw" style="border-color:var(--border)" data-tip="Sobra?" data-desc="Há insumos com sobra ao final do mês?"><span class="gi">?</span></div><div class="nlabel">Sobra no fim do mês?</div></div>
       <div class="pb">
-        <div class="fr" style="gap:5px"><span style="color:var(--muted);font-size:11px;width:30px">Sim →</span><div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Devolução" data-desc="Devolver ao estoque da Logística.">Devolver ao estoque</div></div></div>
-        <div class="fr" style="gap:5px"><span style="color:var(--muted);font-size:11px;width:30px">Não →</span><div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Reposição" data-desc="Solicitar reposição dos insumos.">Solicitar reposição</div></div></div>
+        <div class="fr" style="gap:5px"><span style="color:var(--muted);font-size:11px;width:30px">Sim →</span><div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Devolver" data-desc="Devolver os insumos ao estoque da Logística.">Devolver ao estoque</div></div></div>
+        <div class="fr" style="gap:5px"><span style="color:var(--muted);font-size:11px;width:30px">Não →</span><div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Repor" data-desc="Solicitar reposição dos insumos faltantes.">Solicitar reposição</div></div></div>
       </div>
     </div>
   </div>
 
+  <!-- SOB DEMANDA -->
+  <p class="stitle">Fluxo sob Demanda — Remoção</p>
   <div class="pool">
-    <div class="pool-header" style="background:var(--auditoria-soft);color:var(--auditoria)"><div class="dot8" style="background:var(--auditoria)"></div>REMOÇÃO — Qualquer equipe ou família → Auditoria → Coord. Enfermagem → Motorista</div>
-    <div class="pool-body" style="flex-wrap:wrap;row-gap:8px">
-      <div class="node"><div class="nb" style="border-color:var(--border)" data-tip="Solicitação" data-desc="Qualquer equipe ou família pode solicitar a remoção.">Solicitar remoção</div></div><div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--auditoria)" data-tip="Auditoria" data-desc="Auditoria avalia e aprova ou nega.">Auditoria aprova</div></div><div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Lançar" data-desc="Coord. de Enfermagem lança a remoção no SpinCare.">Coord. Enfermagem lança</div></div><div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Motorista" data-desc="Motorista recebe e realiza a remoção.">Motorista realiza</div></div><div class="arr">›</div>
-      <div class="node"><div class="nb en" style="border-color:var(--enfermagem);color:var(--enfermagem)">✓</div></div>
+    <div class="pool-header" style="background:var(--auditoria-soft);color:var(--auditoria)"><div class="dot8" style="background:var(--auditoria)"></div>REMOÇÃO — Quando necessário</div>
+    <div class="pool-body" style="flex-wrap:wrap;row-gap:8px;">
+      <div class="node"><div class="nb" style="border-color:var(--border)" data-tip="Solicitação" data-desc="Pode solicitar: Enfermagem, Médica, Nutrição, Multi, Técnica ou Família.">Solicitar remoção<br><small style="color:var(--muted);font-size:9.5px">Qualquer equipe ou família</small></div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb gw" style="border-color:var(--auditoria)" data-tip="Auditoria Avalia" data-desc="Auditoria avalia necessidade e viabilidade da remoção."><span class="gi">?</span></div><div class="nlabel">Auditoria aprova?</div></div>
+      <div class="pb">
+        <div class="fr" style="gap:5px">
+          <span style="color:var(--enfermagem);font-size:11px;width:30px">Sim →</span>
+          <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Lançar" data-desc="Coordenador de Enfermagem lança a remoção no SpinCare.">Coord. Enfermagem lança</div></div>
+          <div class="arr">›</div>
+          <div class="node"><div class="nb" style="border-color:var(--enfermagem)" data-tip="Motorista" data-desc="Motorista recebe o chamado e realiza a remoção.">Motorista realiza</div></div>
+          <div class="arr">›</div>
+          <div class="node"><div class="nb en" style="border-color:var(--enfermagem);color:var(--enfermagem)">✓</div><div class="nlabel">Concluída</div></div>
+        </div>
+        <div class="fr" style="gap:5px">
+          <span style="color:var(--nutricao);font-size:11px;width:30px">Não →</span>
+          <div class="node"><div class="nb" style="border-color:var(--nutricao)" data-tip="Negado" data-desc="Comunicar negativa e motivo ao solicitante.">Comunicar negativa</div></div>
+          <div class="arr">›</div>
+          <div class="node"><div class="nb en" style="border-color:var(--nutricao);color:var(--nutricao)">✗</div><div class="nlabel">Encerrado</div></div>
+        </div>
+      </div>
     </div>
   </div>
+
 </div>
 
 <!-- ═══════ AUDITORIA ═══════ -->
