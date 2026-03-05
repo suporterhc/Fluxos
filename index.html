@@ -227,7 +227,32 @@
   </div>
 
   <!-- ETAPA 4 -->
-  <p class="stitle">Etapa 4 — Equipes entram em campo</p>
+  <p class="stitle">Etapa 4 — Prescrições Médica e Nutricional → Auditoria → Logística</p>
+  <div class="pool">
+    <div class="pool-header" style="background:var(--medica-soft);color:var(--medica)"><div class="dot8" style="background:var(--medica)"></div>EQUIPE MÉDICA + NUTRIÇÃO — Prescrições (Médica quinzenal / Nutricional mensal)</div>
+    <div class="pool-body" style="flex-wrap:wrap;row-gap:10px;">
+      <div class="pb" style="border-color:var(--medica)">
+        <div class="plbl" style="color:var(--medica)">em paralelo</div>
+        <div class="fr"><span class="ll" style="color:var(--medica)">MÉDICA</span><div class="arr">›</div><div class="node"><div class="nb" style="border-color:var(--medica)" data-tip="Prescrição Médica" data-desc="Médico gera a prescrição médica no SpinCare. Geração quinzenal.">Gerar prescrição médica</div></div></div>
+        <div class="fr"><span class="ll" style="color:var(--nutricao)">NUTRIÇÃO</span><div class="arr">›</div><div class="node"><div class="nb" style="border-color:var(--nutricao)" data-tip="Prescrição Nutricional" data-desc="Nutricionista gera a prescrição nutricional no SpinCare. Geração mensal.">Gerar prescrição nutricional</div></div></div>
+      </div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--auditoria)" data-tip="Orçamento gerado" data-desc="Cada prescrição gera automaticamente um orçamento para a Auditoria aprovar.">Gera orçamento → Auditoria aprova</div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Dispensação" data-desc="Com o orçamento aprovado, a Logística recebe a dispensação.">Logística recebe dispensação</div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Separar" data-desc="Logística separa os itens.">Separar</div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Conferir" data-desc="Conferir os itens com a prescrição.">Conferir</div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Enviar" data-desc="Enviar ao paciente.">Enviar ao paciente</div></div>
+      <div class="arr">›</div>
+      <div class="node"><div class="nb en" style="border-color:var(--logistica);color:var(--logistica)">✓</div></div>
+    </div>
+  </div>
+
+  <!-- ETAPA 5 -->
+  <p class="stitle">Etapa 5 — Equipes entram em campo</p>
   <div class="pool">
     <div class="pool-header" style="background:var(--tecnica-soft);color:var(--tecnica)"><div class="dot8" style="background:var(--tecnica)"></div>EQUIPE TÉCNICA — Atendimento via App SpinCare (a cada atendimento)</div>
     <div class="pool-body" style="flex-wrap:wrap;row-gap:8px;">
@@ -252,31 +277,6 @@
       <div class="node"><div class="nb" style="border-color:var(--multi)" data-tip="Evolução" data-desc="Fazer evolução e relatório.">Evolução / relatório</div></div><div class="arr">›</div>
       <div class="node"><div class="nb" style="border-color:var(--multi)" data-tip="Salvar" data-desc="Salvar e enviar.">Salvar e enviar</div></div><div class="arr">›</div>
       <div class="node"><div class="nb en" style="border-color:var(--multi);color:var(--multi)">✓</div><div class="nlabel">Check-out</div></div>
-    </div>
-  </div>
-
-  <!-- ETAPA 5 -->
-  <p class="stitle">Etapa 5 — Prescrições Médica e Nutricional → Auditoria → Logística</p>
-  <div class="pool">
-    <div class="pool-header" style="background:var(--medica-soft);color:var(--medica)"><div class="dot8" style="background:var(--medica)"></div>EQUIPE MÉDICA + NUTRIÇÃO — Prescrições (Médica quinzenal / Nutricional mensal)</div>
-    <div class="pool-body" style="flex-wrap:wrap;row-gap:10px;">
-      <div class="pb" style="border-color:var(--medica)">
-        <div class="plbl" style="color:var(--medica)">em paralelo</div>
-        <div class="fr"><span class="ll" style="color:var(--medica)">MÉDICA</span><div class="arr">›</div><div class="node"><div class="nb" style="border-color:var(--medica)" data-tip="Prescrição Médica" data-desc="Médico gera a prescrição médica no SpinCare. Geração quinzenal.">Gerar prescrição médica</div></div></div>
-        <div class="fr"><span class="ll" style="color:var(--nutricao)">NUTRIÇÃO</span><div class="arr">›</div><div class="node"><div class="nb" style="border-color:var(--nutricao)" data-tip="Prescrição Nutricional" data-desc="Nutricionista gera a prescrição nutricional no SpinCare. Geração mensal.">Gerar prescrição nutricional</div></div></div>
-      </div>
-      <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--auditoria)" data-tip="Orçamento gerado" data-desc="Cada prescrição gera automaticamente um orçamento para a Auditoria aprovar.">Gera orçamento → Auditoria aprova</div></div>
-      <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Dispensação" data-desc="Com o orçamento aprovado, a Logística recebe a dispensação.">Logística recebe dispensação</div></div>
-      <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Separar" data-desc="Logística separa os itens.">Separar</div></div>
-      <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Conferir" data-desc="Conferir os itens com a prescrição.">Conferir</div></div>
-      <div class="arr">›</div>
-      <div class="node"><div class="nb" style="border-color:var(--logistica)" data-tip="Enviar" data-desc="Enviar ao paciente.">Enviar ao paciente</div></div>
-      <div class="arr">›</div>
-      <div class="node"><div class="nb en" style="border-color:var(--logistica);color:var(--logistica)">✓</div></div>
     </div>
   </div>
 
